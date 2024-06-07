@@ -1,1 +1,1 @@
-# genai-hackathon
+# GenAI hackathon
