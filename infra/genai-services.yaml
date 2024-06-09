@@ -600,30 +600,30 @@ Resources:
         PasswordLength: 16
         ExcludeCharacters: '"@/\'
 
-#  MySQLRDSSecret:
-#    Type: 'AWS::SecretsManager::Secret'
-#    Properties:
-#      Name: 'mysql_secrets'
-#      Description: 'This is my MySQL RDS secret'
-#      GenerateSecretString:
-#        SecretStringTemplate: '{"username": "mysqlUser", "port": "3306", "dbname": "sales"}'
-#        GenerateStringKey: 'password'
-#        PasswordLength: 16
-#        ExcludeCharacters: '"@/\'
-#
-#  MySQLDBInstance:
-#    Type: "AWS::RDS::DBInstance"
-#    Properties:
-#      DBInstanceIdentifier: "MySQLDBInstance"
-#      AllocatedStorage: "20"
-#      DBInstanceClass: "db.t3.micro"
-#      Engine: "mysql"
-#      MasterUsername: "mysqlUser"
-#      MasterUserPassword: !Sub '{{resolve:secretsmanager:${MySQLRDSSecret}:SecretString:password}}'
-#      VPCSecurityGroups:
-#        - !Ref VPCSecurityGroup
-#      DBSubnetGroupName: !Ref WorkshopPostgreDBSubnetGroup
-#      PubliclyAccessible: "false"
+  MySQLRDSSecret:
+    Type: 'AWS::SecretsManager::Secret'
+    Properties:
+      Name: 'mysql_secrets'
+      Description: 'This is my MySQL RDS secret'
+      GenerateSecretString:
+        SecretStringTemplate: '{"username": "mysqlUser", "port": "3306", "dbname": "sales"}'
+        GenerateStringKey: 'password'
+        PasswordLength: 16
+        ExcludeCharacters: '"@/\'
+
+  MySQLDBInstance:
+    Type: "AWS::RDS::DBInstance"
+    Properties:
+      DBInstanceIdentifier: "MySQLDBInstance"
+      AllocatedStorage: "20"
+      DBInstanceClass: "db.t3.micro"
+      Engine: "mysql"
+      MasterUsername: "mysqlUser"
+      MasterUserPassword: !Sub '{{resolve:secretsmanager:${MySQLRDSSecret}:SecretString:password}}'
+      VPCSecurityGroups:
+        - !Ref VPCSecurityGroup
+      DBSubnetGroupName: !Ref WorkshopPostgreDBSubnetGroup
+      PubliclyAccessible: "false"
 
 
 #  AOSSVpcEndpoint:
